@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import mimetypes
+import os
 import sys
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -131,8 +132,8 @@ class ApiHandler(BaseHTTPRequestHandler):
 
 
 def main() -> None:
-    host = "127.0.0.1"
-    port = 8768
+    host = os.environ.get("HOST", "0.0.0.0")
+    port = int(os.environ.get("PORT", "8768"))
     server = ThreadingHTTPServer((host, port), ApiHandler)
     print(f"World Cup predictor API running on http://{host}:{port}")
     print(f"UI available at http://{host}:{port}/")
