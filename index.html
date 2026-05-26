@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>World Cup 2026 Predictor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">FIFA World Cup 2026</p>
+        <h1>Predictor Console</h1>
+      </div>
+      <div class="actions">
+        <button id="simulateBtn" type="button">Run Simulation</button>
+        <button id="compareBtn" type="button" class="secondary">Compare Models</button>
+        <button id="resetBtn" type="button" class="secondary">Reset</button>
+        <button id="clearSavedBtn" type="button" class="secondary">Clear Saved</button>
+        <span id="runStatus" class="run-status" aria-live="polite">Ready</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Random Forest inspired tournament model</p>
+          <h2>Build, inspect, and rerun a full 48-team tournament path.</h2>
+          <p>
+            This browser UI mirrors the notebook's tournament structure: group tables,
+            best third-place qualifiers, knockout bracket, and champion projection.
+          </p>
+        </div>
+        <div class="hero-panel" aria-live="polite">
+          <span class="label">Projected Champion</span>
+          <strong id="championName">-</strong>
+          <span id="championPath">Run a simulation to generate the path.</span>
+          <dl class="run-meta">
+            <div>
+              <dt>Runs</dt>
+              <dd id="runCount">0</dd>
+            </div>
+            <div>
+              <dt>Last Run</dt>
+              <dd id="lastRun">-</dd>
+            </div>
+            <div>
+              <dt>Seed</dt>
+              <dd id="runSeed">-</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="metrics" aria-label="Simulation metrics">
+        <article>
+          <span>Groups</span>
+          <strong>12</strong>
+        </article>
+        <article>
+          <span>Teams</span>
+          <strong>48</strong>
+        </article>
+        <article>
+          <span>Knockout Spots</span>
+          <strong>32</strong>
+        </article>
+        <article>
+          <span>Model Baseline</span>
+          <strong>53.03%</strong>
+        </article>
+      </section>
+
+      <section class="workspace">
+        <aside class="controls">
+          <div class="control-block">
+            <label for="modelSelect">Model</label>
+            <select id="modelSelect">
+              <option value="rf">Random Forest</option>
+              <option value="xgb">XGBoost</option>
+            </select>
+          </div>
+
+          <div class="control-block">
+            <label for="teamSearch">Find team</label>
+            <input id="teamSearch" type="search" placeholder="Search country">
+          </div>
+
+          <div class="control-block compact">
+            <span class="section-title">API Status</span>
+            <p id="apiStatus">Checking backend...</p>
+          </div>
+        </aside>
+
+        <section class="content">
+          <nav class="tabs" aria-label="Views">
+            <button class="tab active" type="button" data-tab="groups">Groups</button>
+            <button class="tab" type="button" data-tab="thirds">Best Thirds</button>
+            <button class="tab" type="button" data-tab="bracket">Bracket</button>
+            <button class="tab" type="button" data-tab="compare">Compare</button>
+          </nav>
+
+          <div id="groupsView" class="view active">
+            <div id="groupsGrid" class="groups-grid"></div>
+          </div>
+
+          <div id="thirdsView" class="view">
+            <div class="table-shell">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Rank</th>
+                    <th>Team</th>
+                    <th>Group</th>
+                    <th>Pts</th>
+                    <th>GD</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="thirdsTable"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div id="bracketView" class="view">
+            <div id="bracketGrid" class="bracket-grid"></div>
+          </div>
+
+          <div id="compareView" class="view">
+            <div id="compareGrid" class="compare-grid"></div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

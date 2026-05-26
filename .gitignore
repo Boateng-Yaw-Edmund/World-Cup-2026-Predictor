@@ -1,0 +1,21 @@
+# Ignore the data folders and all CSV files
+data/
+*.csv
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+
+# Ignore Python cache and compiled files
+__pycache__/
+*.pyc
+*.pyo
+backend/cache/
+
+# Ignore Virtual Environments (if you create one later)
+venv/
+env/
+.venv/
+
+# Mac OS system files (if you or a collaborator uses a Mac)
+.DS_Store
