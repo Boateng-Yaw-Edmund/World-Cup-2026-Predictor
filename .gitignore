@@ -1,6 +1,5 @@
-# Ignore the data folders and all CSV files
-data/
-*.csv
+# Keep source datasets tracked for deployment.
+# Generated/exported CSVs outside data/ should still be reviewed before commit.
 
 # Ignore Jupyter Notebook checkpoints
 .ipynb_checkpoints/
