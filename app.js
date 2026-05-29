@@ -512,6 +512,7 @@ async function refreshBackendStatus() {
     const payload = await response.json();
     if (!response.ok || !payload.ok) throw new Error(payload.error || "Backend status failed.");
     state.backend = payload;
+    state.lastError = "";
     if (!payload.ready && !state.lastError) {
       state.lastError = "Backend is running, but model setup is incomplete.";
     }
