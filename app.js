@@ -13,7 +13,7 @@ const groups2026 = {
   L: ["England", "Croatia", "Ghana", "Panama"],
 };
 
-const API_BASE = window.location.port === "8768" ? "" : "http://127.0.0.1:8768";
+const API_BASE = window.location.port === "8767" ? "http://127.0.0.1:8768" : "";
 const STORAGE_KEY = "worldCup2026PredictorState";
 
 const state = {
